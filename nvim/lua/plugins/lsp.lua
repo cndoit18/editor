@@ -9,6 +9,7 @@ local lsp_servers = {
 	"lua_ls",
 	"yamlls",
 	"harper_ls",
+	"sqls",
 }
 
 return {
