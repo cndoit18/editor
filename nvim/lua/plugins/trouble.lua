@@ -2,6 +2,8 @@ return {
 	"folke/trouble.nvim",
 	dependencies = {
 		"nvim-lualine/lualine.nvim",
+		"nvim-web-devicons",
+		"nvim-telescope/telescope.nvim",
 	},
 	cmd = { "Trouble" },
 	init = function()
@@ -25,7 +27,6 @@ return {
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "qf", "quickfix" },
 			command = [[
-				nnoremap <buffer> <CR> <CR>:cclose<CR>
 				nnoremap <buffer> k <Up><CR>zz<C-w>p
 				nnoremap <buffer> j <Down><CR>zz<C-w>p
 			]],
@@ -46,10 +47,24 @@ return {
 		},
 	},
 	keys = {
-		{ "[g", vim.diagnostic.goto_prev },
-		{ "]g", vim.diagnostic.goto_next },
-		{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-		{ "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+		{
+			"[g",
+			function()
+				vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+			end,
+		},
+		{
+			"]g",
+			function()
+				vim.diagnostic.get_next({ severity = vim.diagnostic.severity.WARN })
+			end,
+		},
+		{ "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true<cr>", desc = "Diagnostics (Trouble)" },
+		{
+			"<leader>xX",
+			"<cmd>Trouble diagnostics toggle focus=true filter.buf=0<cr>",
+			desc = "Buffer Diagnostics (Trouble)",
+		},
 		{ "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
 		{
 			"<leader>cS",
