@@ -92,14 +92,14 @@ function! ShowDocumentation()
 endfunction
 
 " GoTo code navigation
-nmap <silent>K :call ShowDocumentation()<CR>
-nmap <silent>gd <Plug>(coc-definition)
-nmap <silent>gy <Plug>(coc-type-definition)
-nmap <silent>gi <Plug>(coc-implementation)
-nmap <silent>gr <Plug>(coc-references)
-nmap <silent>[g <Plug>(coc-diagnostic-prev)
-nmap <silent>]g <Plug>(coc-diagnostic-next)
-nmap <leader>ac <Plug>(coc-codeaction)
+nnoremap <silent>K :call ShowDocumentation()<CR>
+nnoremap <silent>gd <Plug>(coc-definition)
+nnoremap <silent>gy <Plug>(coc-type-definition)
+nnoremap <silent>gi <Plug>(coc-implementation)
+nnoremap <silent>gr <Plug>(coc-references)
+nnoremap <silent>[g <Plug>(coc-diagnostic-prev)
+nnoremap <silent>]g <Plug>(coc-diagnostic-next)
+nnoremap <leader>ac <Plug>(coc-codeaction)
 
 nnoremap <leader>nf :NERDTreeFocus<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
@@ -132,4 +132,3 @@ if has('mouse')
     set mouse=nvi
   endif
 endif
-
