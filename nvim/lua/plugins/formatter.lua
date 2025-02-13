@@ -43,12 +43,18 @@ return {
 			},
 		})
 
+		vim.g.enable_autoformat = 1
 		local format_augroup = vim.api.nvim_create_augroup("formatter", { clear = true })
 		vim.api.nvim_create_autocmd({
 			"BufWritePost",
 		}, {
 			group = format_augroup,
-			command = ":FormatWrite",
+			command = "if get(g:,'enable_autoformat', 1) | :FormatWrite | endif",
 		})
+
+		vim.api.nvim_create_user_command("ToggleAutoFormat", function(_)
+			vim.g.enable_autoformat = not vim.g.enable_autoformat
+			print("autoformat is " .. (vim.g.enable_autoformat and "on" or "off"))
+		end, { nargs = "?" })
 	end,
 }
