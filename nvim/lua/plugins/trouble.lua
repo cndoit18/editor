@@ -50,13 +50,23 @@ return {
 		{
 			"[g",
 			function()
-				vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+				vim.diagnostic.goto_prev({
+					severity = {
+						min = vim.diagnostic.severity.WARN,
+						max = vim.diagnostic.severity.ERROR,
+					},
+				})
 			end,
 		},
 		{
 			"]g",
 			function()
-				vim.diagnostic.get_next({ severity = vim.diagnostic.severity.WARN })
+				vim.diagnostic.get_next({
+					severity = {
+						min = vim.diagnostic.severity.WARN,
+						max = vim.diagnostic.severity.ERROR,
+					},
+				})
 			end,
 		},
 		{ "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true<cr>", desc = "Diagnostics (Trouble)" },
